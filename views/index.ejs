@@ -1,61 +1,83 @@
 <!DOCTYPE html>
 <html>
-  <!--HTML에 대한 초기설정값-->
-  <head>
-    <title>Multiple</title> <!--타이틀임 ㅇㅇ 맨위에 뜨는거-->
-    <link rel='stylesheet' href='/stylesheets/style.css' /><!-- 스타일 정의문서를 포함하는 방법-->
-  </head>
-  <body>
-    
-    <div style="font-size:60px; color:lavenderblush; background-color: #D6E6F0;">
-      Have a nice day!<!--ㅇ아아알아아앙아ㅏ아앙ㅇㅇ아아ㅏ아아ㅏ앙ㅇㅇ아ㅏ아아아ㅏ아아아아ㅏㅏ아아ㅏ아아아아아아ㅏ아ㅏ아ㅏㅏ-->
-    </div>
+<!--HTML에 대한 초기설정값-->
 
-    <div style="font-size:50px;">
-      oaoaoaoaoaoaoa
-    </div>
+<head>
+  <title>HELLO CARL</title>
+  <!--타이틀임 ㅇㅇ 맨위에 뜨는거-->
+  <link rel='stylesheet' href='/stylesheets/style.css' /><!-- 스타일 정의문서를 포함하는 방법-->
+  <script src='/javascripts/jquery3.1.1.js'></script>
+</head>
 
-    <img src='/images/hqdefault.jpg'/>
-    <h1>hihihihihihihihihihihihi</h1>
-  </p>Welcome to <%= title %></p>
-  </body>
+<body>
+
+  <div style="font-size:60px; color:lavenderblush; background-color: #D6E6F0;">
+    "CARLING AROUND" 사이트
+  </div>
+
+  <div>
+    <button id='button1'>SPIN THE CARL~!</button>
+  </div>
+
+  <div style="text-align: center; background-color: rgb(68, 64, 63);">
+
+    <img id='image_carl' src='/images/NEWNEWCARL.jpg' />
+  </div>
+
+
+  <script>
+  function rotate_img(direction){
+  if(direction=='r')
+  {
+     if (imagestate == 0) {
+      $('#image_carl').css("transform", "rotate(90deg)");
+    } 
+    else if (imagestate == 1) {
+      $('#image_carl').css("transform", "rotate(180deg)");
+    }
+    else if (imagestate == 2) {
+      $('#image_carl').css("transform", "rotate(270deg)");
+    }
+    else if (imagestate == 3) {
+      $('#image_carl').css("transform", "rotate(0deg)");
+    }
+    imagestate+=1;
+    imagestate%=4;
+  }
+   
+  else
+  {
+    if (imagestate == 0) {
+      $('#image_carl').css("transform", "rotate(270deg)");
+    }
+    else if (imagestate == 1) {
+      $('#image_carl').css("transform", "rotate(0deg)");
+    }
+    else if (imagestate == 2) {
+      $('#image_carl').css("transform", "rotate(90deg)");
+    }
+    else if (imagestate == 3) {
+      $('#image_carl').css("transform", "rotate(180deg)");
+    }
+    imagestate+=1;
+    imagestate%=4;
+  }
+  }
+    var imagestate = 0;
+
+    $('#button1').click(function () {
+        rotate_img('r');
+    });
+
+    $(document).keydown(function (e) {
+      if(e.keyCode == 39) {
+        rotate_img('r');
+      }
+
+      else if (e.keyCode == 37) {
+        rotate_img('l');
+      }
+    })
+  </script>
+</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
