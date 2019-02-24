@@ -3,81 +3,136 @@
 <!--HTML에 대한 초기설정값-->
 
 <head>
-  <title>HELLO CARL</title>
+  <title>SPIN CARL</title>
   <!--타이틀임 ㅇㅇ 맨위에 뜨는거-->
   <link rel='stylesheet' href='/stylesheets/style.css' /><!-- 스타일 정의문서를 포함하는 방법-->
   <script src='/javascripts/jquery3.1.1.js'></script>
+  <script src='/javascripts/jquery-animate-css-rotate-scale.js'></script>
 </head>
 
 <body>
 
-  <div style="font-size:60px; color:lavenderblush; background-color: #D6E6F0;">
-    "CARLING AROUND" 사이트
-  </div>
+  <div id='background' style="text-align: center;">
 
+    <img id='img1' src='/images/NEWNEWCARL.jpg' />
+  </div>
   <div>
-    <button id='button1'>SPIN THE CARL~!</button>
+    <input id='stop' type="button" value="칼멈추기" />
   </div>
 
-  <div style="text-align: center; background-color: rgb(68, 64, 63);">
-
-    <img id='image_carl' src='/images/NEWNEWCARL.jpg' />
+  <div style="text-align:center">
+    <input id='spin' type="button" value="칼돌리기" />
   </div>
 
+  <script> //색 바꿔주기
+    function crazy_mode() {
+      while (1) {
+        var num1 = Math.floor(Math.random() * 255) + 1;
+        var num2 = Math.floor(Math.random() * 255) + 1;
+        var num3 = Math.floor(Math.random() * 255) + 1;
+        var value = 'rgb(' + num1 + ',' + num2 + ',' + num3 + ')';
+        $('#background').css('background-color', value);
+      }
+    }
+  </script>
 
   <script>
-  function rotate_img(direction){
-  if(direction=='r')
-  {
-     if (imagestate == 0) {
-      $('#image_carl').css("transform", "rotate(90deg)");
-    } 
-    else if (imagestate == 1) {
-      $('#image_carl').css("transform", "rotate(180deg)");
-    }
-    else if (imagestate == 2) {
-      $('#image_carl').css("transform", "rotate(270deg)");
-    }
-    else if (imagestate == 3) {
-      $('#image_carl').css("transform", "rotate(0deg)");
-    }
-    imagestate+=1;
-    imagestate%=4;
-  }
-   
-  else
-  {
-    if (imagestate == 0) {
-      $('#image_carl').css("transform", "rotate(270deg)");
-    }
-    else if (imagestate == 1) {
-      $('#image_carl').css("transform", "rotate(0deg)");
-    }
-    else if (imagestate == 2) {
-      $('#image_carl').css("transform", "rotate(90deg)");
-    }
-    else if (imagestate == 3) {
-      $('#image_carl').css("transform", "rotate(180deg)");
-    }
-    imagestate+=1;
-    imagestate%=4;
-  }
-  }
-    var imagestate = 0;
 
-    $('#button1').click(function () {
-        rotate_img('r');
+
+    function getRotationDegrees(obj) {
+      var matrix = obj.css("-webkit-transform") ||
+        obj.css("-moz-transform") ||
+        obj.css("-ms-transform") ||
+        obj.css("-o-transform") ||
+        obj.css("transform");
+      if (matrix !== 'none') {
+        var values = matrix.split('(')[1].split(')')[0].split(',');
+        var a = values[0];
+        var b = values[1];
+        var angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+      } else { var angle = 0; }
+      return (angle < 0) ? angle + 360 : angle;
+    }
+    var interval;
+    $(document).on('click', '#spin', function () {
+      
+      //crazy_mode();
+      interval = setInterval(
+        function () {
+          var k=1;
+          if(k==1)
+          {
+            var num1 = Math.floor(Math.random() * 255) + 1;
+            var num2 = Math.floor(Math.random() * 255) + 1;
+            var num3 = Math.floor(Math.random() * 255) + 1;
+            var value = 'rgb(' + num1 + ',' + num2 + ',' + num3 + ')';
+            $('#background').css('background-color', value);
+            k=0;
+          }
+      }, 250);
+      $('#img1').animate({ rotate: spin }, 0, function () {})
+      
+      setTimeout(stop(), 1000);
+    })
+
+    $(document).on('click','#stop', function(){
+      clearInterval(interval);
+    })
+
+    function stop() {
+      alert('타임아웃 스탑 호출됨');
+      clearInterval(interval);
+    }
+
+    function rotate_img(direction) {
+      if (ok == 1) {
+        ok = 0;
+        if (direction == 'r') {
+          $('#img1').animate({ rotate: '+=90deg' }, 200, function () {
+            ok = 1;
+            $('#deg_val').val(getRotationDegrees($('#img1')));
+          });
+        }
+        else {
+          $('#img1').animate({ rotate: '-=90deg' }, 200, function () {
+            ok = 1;
+            $('#deg_val').val(getRotationDegrees($('#img1')));
+          });
+        }
+      }
+    }
+    /*
+    $(document).on('click','#fix_deg',function(){
+
+      if(ok==1){
+        crazy_mode();
+        ok=0;
+        var newdeg= $('#deg_val').val();
+        $('#img1').animate({rotate:newdeg},500,function(){
+          ok=1;
+        })
+      }
+
     });
+/*
+    ////////////키눌렀을때
 
     $(document).keydown(function (e) {
-      if(e.keyCode == 39) {
-        rotate_img('r');
-      }
+        //-> 39
+        //<- 37
+        if (e.keyCode == 39) {
+          //우측
+          rotate_img('r');
 
-      else if (e.keyCode == 37) {
-        rotate_img('l');
-      }
-    })
+        }
+        else if (e.keyCode == 37) {
+          rotate_img('l');
+        }
+      });*/
+
+
   </script>
+
 </body>
+
 </html>
