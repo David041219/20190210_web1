@@ -38,7 +38,6 @@
 
   <script>
 
-
     function getRotationDegrees(obj) {
       var matrix = obj.css("-webkit-transform") ||
         obj.css("-moz-transform") ||
@@ -52,37 +51,9 @@
         var angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
       } else { var angle = 0; }
       return (angle < 0) ? angle + 360 : angle;
-    }
-    var interval;
-    $(document).on('click', '#spin', function () {
-      
-      //crazy_mode();
-      interval = setInterval(
-        function () {
-          var k=1;
-          if(k==1)
-          {
-            var num1 = Math.floor(Math.random() * 255) + 1;
-            var num2 = Math.floor(Math.random() * 255) + 1;
-            var num3 = Math.floor(Math.random() * 255) + 1;
-            var value = 'rgb(' + num1 + ',' + num2 + ',' + num3 + ')';
-            $('#background').css('background-color', value);
-            k=0;
-          }
-      }, 250);
-      $('#img1').animate({ rotate: spin }, 0, function () {})
-      
-      setTimeout(stop(), 1000);
-    })
-
-    $(document).on('click','#stop', function(){
-      clearInterval(interval);
-    })
-
-    function stop() {
-      alert('타임아웃 스탑 호출됨');
-      clearInterval(interval);
-    }
+    } 
+    var ok;
+    ok++;
 
     function rotate_img(direction) {
       if (ok == 1) {
@@ -101,6 +72,40 @@
         }
       }
     }
+    var interval;
+    var k = 1;
+    $(document).on('click', '#spin', function () {
+      
+      //crazy_mode();
+      interval = setInterval(
+        
+        function () {
+          rotate_img(r);
+          if(k=1)
+          {
+            var num1 = Math.floor(Math.random() * 255) + 1;
+            var num2 = Math.floor(Math.random() * 255) + 1;
+            var num3 = Math.floor(Math.random() * 255) + 1;
+            var value = 'rgb(' + num1 + ',' + num2 + ',' + num3 + ')';
+            $('#background').css('background-color', value);
+
+            k--; 
+          }}, 250);
+      $('#img1').animate({ rotate: spin }, 0, function () {})
+
+    })
+
+    $(document).on('click','#stop', function(){
+      clearInterval(interval);
+      k++;
+    })
+    /*
+    function stop() {
+      alert('타임아웃 스탑 호출됨');
+      clearInterval(interval);
+    }*/
+
+   
     /*
     $(document).on('click','#fix_deg',function(){
 
