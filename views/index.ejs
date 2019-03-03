@@ -1,41 +1,31 @@
 <!DOCTYPE html>
 <html>
-<!--HTML에 대한 초기설정값-->
 
 <head>
   <title>SPIN CARL</title>
-  <!--타이틀임 ㅇㅇ 맨위에 뜨는거-->
-  <link rel='stylesheet' href='/stylesheets/style.css' /><!-- 스타일 정의문서를 포함하는 방법-->
+  <link rel='stylesheet' href='/stylesheets/style.css' />
   <script src='/javascripts/jquery3.1.1.js'></script>
   <script src='/javascripts/jquery-animate-css-rotate-scale.js'></script>
 </head>
 
 <body>
 
+  <div style="background-color:turquoise; height: 100px; position: relative">
+    <div style="font-display:inherit; position:absolute; left:350px; color:black; font-size:30px;"> #가지돌리기</div>
+    <div style="font-display:inherit; position:absolute; left:700px; color:lightsalmon; font-size:30px;"> #화살표모양 칼돌리기</div>
+  </div>
+
   <div id='background' style="text-align: center;">
 
-    <img id='img1' src='/images/NEWNEWCARL.jpg' />
-  </div>
-  <div>
-    <input id='stop' type="button" value="칼멈추기" />
+    <img id='img1' src='/images/ARROW.jpg' /> 
   </div>
 
   <div style="text-align:center">
     <input id='spin' type="button" value="칼돌리기" />
   </div>
-
-  <script> //색 바꿔주기
-    function crazy_mode() {
-      while (1) {
-        var num1 = Math.floor(Math.random() * 255) + 1;
-        var num2 = Math.floor(Math.random() * 255) + 1;
-        var num3 = Math.floor(Math.random() * 255) + 1;
-        var value = 'rgb(' + num1 + ',' + num2 + ',' + num3 + ')';
-        $('#background').css('background-color', value);
-      }
-    }
-  </script>
-
+  <div style="text-align:center">
+    <input id='stop' type="button" value="칼멈추기" style="background-color: black; color:white;"/>
+  </div>
   <script>
 
     function getRotationDegrees(obj) {
@@ -55,32 +45,23 @@
     var ok;
     ok++;
 
-    function rotate_img(direction) {
-      if (ok == 1) {
-        ok = 0;
-        if (direction == 'r') {
-          $('#img1').animate({ rotate: '+=90deg' }, 200, function () {
-            ok = 1;
+    function rotate_img() {
+     
+          $('#img1').animate({ rotate: '+=22.5deg' }, 100, function () {
+          
             $('#deg_val').val(getRotationDegrees($('#img1')));
           });
         }
-        else {
-          $('#img1').animate({ rotate: '-=90deg' }, 200, function () {
-            ok = 1;
-            $('#deg_val').val(getRotationDegrees($('#img1')));
-          });
-        }
-      }
-    }
     var interval;
-    var k = 1;
+
     $(document).on('click', '#spin', function () {
       
-      //crazy_mode();
+      
       interval = setInterval(
         
         function () {
-          rotate_img(r);
+          rotate_img();
+         
           if(k=1)
           {
             var num1 = Math.floor(Math.random() * 255) + 1;
@@ -99,43 +80,6 @@
       clearInterval(interval);
       k++;
     })
-    /*
-    function stop() {
-      alert('타임아웃 스탑 호출됨');
-      clearInterval(interval);
-    }*/
-
-   
-    /*
-    $(document).on('click','#fix_deg',function(){
-
-      if(ok==1){
-        crazy_mode();
-        ok=0;
-        var newdeg= $('#deg_val').val();
-        $('#img1').animate({rotate:newdeg},500,function(){
-          ok=1;
-        })
-      }
-
-    });
-/*
-    ////////////키눌렀을때
-
-    $(document).keydown(function (e) {
-        //-> 39
-        //<- 37
-        if (e.keyCode == 39) {
-          //우측
-          rotate_img('r');
-
-        }
-        else if (e.keyCode == 37) {
-          rotate_img('l');
-        }
-      });*/
-
-
   </script>
 
 </body>
