@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>BIG DOGE</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src='/javascripts/jquery3.1.1.js'></script>
+    <script src='/javascripts/jquery-animate-css-rotate-scale.js'></script>
+</head>
+
+<body>
+
+    <div style="background-color:turquoise; height: 100px; position: relative">
+        <input type="button" id='gaji' value="SPIN EGGPLANT"
+            style="font-display:inherit; position:absolute; left:100px; color:black; font-size:30px; top:25%;">
+        <input type="button" id='arrow' value="SPIN ARROW"
+            style="font-display:inherit; position:absolute; left:450px; color:lightsalmon; font-size:30px; top:25%;">
+        <input type="button" id='doge' value="BLACK JACK DOGE"
+            style="font-display:inherit; position:absolute; left:800px; color:lightcoral; font-size:30px; top:25%">
+    </div>
+
+    <div id='background' style="text-align: center; margin-top:15.5%;">
+
+        <div>
+             <input id='pt' type="text" value="0 pt" style="top:32px;"/>
+        </div>
+        
+        <div>
+            <img id='doge_img' src='/images/doge2.jpg' style='transform:scale(1.0)' />
+        </div>
+        
+        <div> <!--stop or go = sog-->
+            <input type="button" id='a111' value='STOP' >
+        </div>
+
+
+    </div>
+
+    <script>
+
+        $(document).on('click', '#a111', function(){
+            alert("점수를 총산하여 STOP 합니다.");
+            
+        })
+
+        $(document).on('click', '#arrow', function () {
+            alert("ARROW로 변환합니다.");
+            window.location.href = '/arrow';
+        })
+
+        $(document).on('click', '#gaji', function () {
+            alert("GAJI 로 변환합니다.");
+            window.location.href = '/gaji';
+        })
+
+
+        $(document).on('click', '#doge', function () {
+            alert("이미 DOGE 입니다.");
+        })
+
+        var size = 1;
+        var ok = 1;
+        var point=0;
+
+        $(document).on('click', '#doge_img', function () {
+
+            if (ok == 1) {
+                ok = 0;
+                var ran = Math.floor(Math.random() * 2);
+                if (ran == 1) {
+                    size = size * 1 + 0.1;
+                    $('#doge_img').css('transform', 'scale(' + size + ')');
+                    point=point*1+10;
+                    $('#pt').val(point+'pt');
+                }
+
+                else if (ran == 0) {
+                    size = size * 1 - 0.1;
+                    $('#doge_img').css('transform', 'scale(' + size + ')');
+                    point = point*1-10;
+                    $('#pt').val(point+'pt');
+                }
+                ok = 1;
+            }
+
+        })
+
+    </script>
+
+</body>
+
+</html>

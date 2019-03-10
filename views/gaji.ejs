@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>화살표 돌리기</title>
+  <title>가지 돌리기</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <script src='/javascripts/jquery3.1.1.js'></script>
   <script src='/javascripts/jquery-animate-css-rotate-scale.js'></script>
@@ -11,24 +11,25 @@
 <body>
 
   <div style="background-color:turquoise; height: 100px; position: relative">
-    <input type="button" id='gaji'  value="SPIN EGGPLANT" style="font-display:inherit; position:absolute; left:100px; color:black; font-size:30px; top:25%;">
-    <input type="button" id='arrow' value="SPIN ARROW"style="font-display:inherit; position:absolute; left:450px; color:lightsalmon; font-size:30px; top:25%;">
-    <input type="button" id='doge'  value="BLACK JACK DOGE" style="font-display:inherit; position:absolute; left:800px; color:lightcoral; font-size:30px; top:25%"> 
+    <input type="button" value="SPIN EGGPLANT"id='gaji' style="font-display:inherit; position:absolute; margin-left:350px; margin-top:32px; color:black; font-size:30px;"></div>
+    <input type="button" id='arrow' value="SPIN ARROW"style="font-display:inherit; position:absolute; margin-left:700px; margin-top:-67.5px; color:lightsalmon; font-size:30px;"></div>
   </div>
 
   <div id='background' style="text-align: center;">
 
-    <img id='img1' src='/images/ARROW.jpg' /> 
+    <img id='img1' src='/images/gaji.jpg' /> 
   </div>
 
   <div style="text-align:center">
-    <input id='spin' type="button" value="화살표 돌리기" />
+    <input id='spin' type="button" value="가지 돌리기" />
   </div>
   <div style="text-align:center">
-    <input id='stop' type="button" value="화살표 멈추기" style="background-color: black; color:white;"/>
+    <input id='stop' type="button" value="가지 멈추기" style="background-color: black; color:white;"/>
   </div>
 
-  <form id='gaji'action='/gaji' style='display:none'>
+  </form>
+
+  <form id='arrow'action='/arrow' style='display:none'>
   </form>
 
   <script>
@@ -52,7 +53,7 @@
 
     function rotate_img() {
      
-      $('#img1').animate({ rotate: '+=720deg' },9000, function () {
+          $('#img1').animate({ rotate: '+=720deg' },9000, function () {
             $('#deg_val').val(getRotationDegrees($('#img1')));
           });
         }
@@ -75,8 +76,6 @@
 
             k--; 
           }}, 250);
-      $('#img1').animate({ rotate: spin }, 0, function () {})
-
     })
 
     $(document).on('click','#stop', function(){
@@ -85,20 +84,14 @@
     })
 
     $(document).on('click', '#arrow', function() {
-      alert("이미 ARROW 상태입니다.");
-      console.log('ARROW 상태 돌입시도');
+      alert("ARROW로 변환합니다.");
+      //$('#ARROW').submit();
+      window.location.href = '/arrow';
     })
 
     $(document).on('click', '#gaji', function(){
-      alert("GAJI로 변경됩니다.");
-      //$('#gaji').submit();
-      window.location.href = '/gaji'; //submit 안쓰고 변경할때
+      alert("이미 GAJI 상태입니다.");
     })  
-
-    $(document).on('click', '#doge', function() {
-      alert("DOGE BLACKJACK MODE");
-      window.location.href = '/doge';
-    })
   </script>
 
 </body>

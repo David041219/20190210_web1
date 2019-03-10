@@ -78,3 +78,29 @@ a {
   background-image: linear-gradient(to bottom, #c7ff99, #a2f2e5);
   text-decoration: none;
 }
+
+#doge:hover{
+  background: #c7ff99;
+  background-image: -webkit-linear-gradient(top, #c7ff99, #a2f2e5);
+  background-image: -moz-linear-gradient(top, #c7ff99, #a2f2e5);
+  background-image: -ms-linear-gradient(top, #c7ff99, #a2f2e5);
+  background-image: -o-linear-gradient(top, #c7ff99, #a2f2e5);
+  background-image: linear-gradient(to bottom, #c7ff99, #a2f2e5);
+  text-decoration: none;
+}
+
+#a111{
+  transition:400ms ease all;
+  outline:none;
+  height:60px;
+  font-size:1.6em;
+  padding:0.2em;
+  border:none;
+  color : red;
+  background-color: #FFFFFF;
+}
+
+#a111:hover{
+  color : #FFFFFF;
+  background-color : red;
+}

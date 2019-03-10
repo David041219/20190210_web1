@@ -41,7 +41,7 @@ app.use(function(err, req, res, next) {
 const port = 3000;
 const myip ="0.0.0.0";
 app.listen(port,myip,function(){
-    console.log("ㅎㅇ? \n"+port);
+    console.log("local host has been opened succesfully \n"+port);
 });
 
 module.exports = app;
