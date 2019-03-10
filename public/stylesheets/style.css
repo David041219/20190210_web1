@@ -58,3 +58,23 @@ a {
   background-image: linear-gradient(to bottom, #c7ff99, #a2f2e5);
   text-decoration: none;
 }
+
+#gaji:hover{
+  background: #c7ff99;
+  background-image: -webkit-linear-gradient(top, #c7ff99, #a2f2e5);
+  background-image: -moz-linear-gradient(top, #c7ff99, #a2f2e5);
+  background-image: -ms-linear-gradient(top, #c7ff99, #a2f2e5);
+  background-image: -o-linear-gradient(top, #c7ff99, #a2f2e5);
+  background-image: linear-gradient(to bottom, #c7ff99, #a2f2e5);
+  text-decoration: none;
+}
+
+#arrow:hover{
+  background: #c7ff99;
+  background-image: -webkit-linear-gradient(top, #c7ff99, #a2f2e5);
+  background-image: -moz-linear-gradient(top, #c7ff99, #a2f2e5);
+  background-image: -ms-linear-gradient(top, #c7ff99, #a2f2e5);
+  background-image: -o-linear-gradient(top, #c7ff99, #a2f2e5);
+  background-image: linear-gradient(to bottom, #c7ff99, #a2f2e5);
+  text-decoration: none;
+}
