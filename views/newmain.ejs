@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>MAIN MENU</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src='/javascripts/jquery3.1.1.js'></script>
+    <script src='/javascripts/jquery-animate-css-rotate-scale.js'></script>
+</head>
+
+<body>
+
+    <div style="background-color:turquoise; height: 100px; position: relative">
+        <input type="button" id='gaji' value="SPIN EGGPLANT"
+            style="font-display:inherit; position:absolute; left:100px; color:black; font-size:30px; top:25%;">
+        <input type="button" id='arrow' value="SPIN ARROW"
+            style="font-display:inherit; position:absolute; left:450px; color:lightsalmon; font-size:30px; top:25%;">
+        <input type="button" id='doge' value="BLACK JACK DOGE"
+            style="font-display:inherit; position:absolute; left:800px; color:lightcoral; font-size:30px; top:25%">
+    </div>
+
+    <div style="text-align: center; margin-top: 10%">
+        <form action='/users/login' method="post" id='info'
+            style="background-color:white; border: solid 2px mediumaquamarine; text-align:center; margin:0 auto; width:400px; height:360px;">
+
+            <div style="text-align: center; top:30%;">
+                <div style="margin-top:10px; height: 200px; width: 200px; text-align: center;">
+                    <img src="/images/name.jpg" style="height: 85%; width: 150%; margin-left:10%;">
+                </div>
+                <div style="margin-top: 10px;">
+                    <input type="text" id='id_box'class="login_button" placeholder="아이디" name='ID'/>
+                </div>
+                <div style="margin-top: 10px;">
+                    <input type="password" id='ps_box' class="login_button" placeholder="비밀번호" name='PW' />
+                </div>
+
+                <div style="margin-top: 10px;">
+                    <input type="button" id='login' value="로그인" />
+                </div>
+                <!--ID와 PS가 입력되었을때만 제출하게끔 if로 제어-->
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        $(document).on('click', '#login', function() {
+          //$('#info').submit();
+             //console.log($('#id_box').val() );
+            //console.log($('#ps_box').val() );
+            
+            if( !$('#id_box').val() ) {
+                alert('ID가 입력되지 않았습니다.');
+            }
+
+            else if( !$('#ps_box').val() ) {
+                alert('PW가 입력되지 않았습니다.');
+            }
+            
+            else if( $('#id_box').val() && $('#ps_box').val()){
+            $('#info').submit();
+
+            }
+        })
+        $(document).on('click', '#arrow', function () {
+            alert("화살돌리러가는중...");
+            window.location.href = '/index';
+        })
+
+        $(document).on('click', '#gaji', function () {
+            alert("가지돌리러가는중...");
+            //$('#gaji').submit();
+            window.location.href = '/gaji'; //submit 안쓰고 변경할때
+        })
+
+        $(document).on('click', '#doge', function () {
+            alert("개도박하러가는중...");
+            window.location.href = '/doge';
+        })
+    </script>
+
+
+</body>
+
+</html>

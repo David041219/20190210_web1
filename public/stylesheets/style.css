@@ -104,3 +104,42 @@ a {
   color : #FFFFFF;
   background-color : red;
 }
+
+#backmain{
+  background: url( "/images/backtomain.jpg" ) no-repeat;
+  border: none;
+  width: 100px;
+  height: 100px;
+  background-size:contain;
+  cursor: pointer;
+  position:absolute;
+  left:10px;
+  z-index:100;
+}
+
+#backmain:hover{
+  transform:scale(1.3,1.3);
+  -webkit-transform:scale(1.3,1.3);
+  -moz-transform:scale(1.3,1.3);
+}
+
+.login_button{
+  border-color: deepskyblue;
+  border-width: 2px;
+}
+
+#login{
+  transition:400ms ease all;
+  outline:none;
+  height:60px;
+  font-size:1.6em;
+  padding:0.2em;
+  border:none;
+  color : rgb(100, 161, 185);
+  background-color: #FFFFFF;
+}
+
+#login:hover{
+  color : #FFFFFF;
+  background-color:rgb(100, 161, 185);
+}

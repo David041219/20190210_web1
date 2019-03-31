@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.redirect('/arrow');
+    res.redirect('/main');
 });
 
 router.get('/arrow', function(req, res, next) {
@@ -22,5 +22,9 @@ router.get('/doge', function(req, res, next) {
     res.render('doge_big', {title: 'DOGE BLACKJACK'});
 });
 
+router.get('/main', function(req, res, next) {
+    console.log('메인화면 접속');
+    res.render('newmain', {title: 'MAIN SCREEN'});
+})
 
 module.exports = router;
