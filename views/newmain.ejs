@@ -50,17 +50,21 @@
              //console.log($('#id_box').val() );
             //console.log($('#ps_box').val() );
             
+            console.log("로그인 시도중");
+
             if( !$('#id_box').val() ) {
                 alert('ID가 입력되지 않았습니다.');
+                console.log("ID 입력 안하고 로그인시도함");
             }
 
             else if( !$('#ps_box').val() ) {
                 alert('PW가 입력되지 않았습니다.');
+                console.log("비밀번호 입력 안하고 로그인 시도함");
             }
             
             else if( $('#id_box').val() && $('#ps_box').val()){
-            $('#info').submit();
-
+                $('#info').submit();
+                console.log("완전히 로그인이 시도됨");
             }
         })
         $(document).on('click', '#arrow', function () {
