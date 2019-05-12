@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>화살표 돌리기</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src='/javascripts/jquery3.1.1.js'></script>
+    <script src='/javascripts/jquery-animate-css-rotate-scale.js'></script>
+</head>
+
+<body>
+
+    <div style="background-color:turquoise; height: 100px; position: relative">
+        <input type="button" id='gaji' value="SPIN EGGPLANT"
+            style="font-display:inherit; position:absolute; left:100px; color:black; font-size:30px; top:25%;">
+        <input type="button" id='arrow' value="SPIN ARROW"
+            style="font-display:inherit; position:absolute; left:450px; color:lightsalmon; font-size:30px; top:25%;">
+        <input type="button" id='doge' value="BLACK JACK DOGE"
+            style="font-display:inherit; position:absolute; left:800px; color:lightcoral; font-size:30px; top:25%">
+    </div>
+
+    <div>
+        <select name="weather" id='place'>
+            <option>도시를 선택하세요</option>
+            <option>서울</option>
+            <option>부산</option>
+            <option>달라스</option>
+        </select>
+    </div>
+    <div id='forcast' style="margin:0 auto; width: 300px; border: 1px solid yellowgreen">
+
+    </div>
+
+    <script>
+        $(document).on('click', '#arrow', function () {
+            alert("이미 ARROW 상태입니다.");
+            console.log('ARROW 상태 돌입시도');
+        })
+
+        $("#place").on("change", function () {
+            console.log($("#place option:selected").text());
+            alert("바뀜");
+
+            if ($("#place option:selected").text() != '도시를 선택하세요') {
+                alert('서울 부산일때만임');
+                fetch('/weather', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify(
+                        {
+                            cityname: $("#place option:selected").text(),
+                        }
+                    )
+                }).then((res) => res.json()
+                ).then((data) => {
+                    if (data.success == true) {
+                        alert('조회 성공\n' + data.weather + '\n' + data.temperature);
+                        $('#forcast').empty(); 
+                        $('#forcast').append($('<div>').text('날씨 :' + data.weather).css('background', 'yellow'));
+                        $('#forcast').append($('<div>').text('온도 :' + data.temperature));
+                    }
+
+                    else {
+                        alert('조회 실패');
+                    }
+
+                });
+            }
+        });
+
+        $(document).on('click', '#gaji', function () {
+            alert("GAJI로 변경됩니다.");
+            //$('#gaji').submit();
+            window.location.href = '/gaji'; //submit 안쓰고 변경할때
+        })
+
+        $(document).on('click', '#doge', function () {
+            alert("DOGE BLACKJACK MODE");
+            window.location.href = '/doge';
+        })
+    </script>
+
+</body>
+
+</html>

@@ -18,6 +18,7 @@
             style="font-display:inherit; position:absolute; left:450px; color:lightsalmon; font-size:30px; top:25%;">
         <input type="button" id='doge' value="BLACK JACK DOGE"
             style="font-display:inherit; position:absolute; left:800px; color:lightcoral; font-size:30px; top:25%">
+        <input type="button" id='weatherbutton' value="날씨">
     </div>
 
     <div style="text-align: center; margin-top: 10%">
@@ -45,6 +46,11 @@
     </div>
 
     <script>
+        $(document).on('click', '#weatherbutton', function() {        
+            alert('여기서 날씨 보여주기');
+            window.location.href= '/weather';
+        })
+
         $(document).on('click', '#login', function() {
           //$('#info').submit();
              //console.log($('#id_box').val() );
@@ -66,7 +72,9 @@
                 $('#info').submit();
                 console.log("완전히 로그인이 시도됨");
             }
-        })
+        })  
+
+        
         $(document).on('click', '#arrow', function () {
             alert("화살돌리러가는중...");
             window.location.href = '/index';
